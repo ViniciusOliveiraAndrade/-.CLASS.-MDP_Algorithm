@@ -1,10 +1,21 @@
 class UI(object):
-    def __init__(self, screen_width, screen_height, plus = 0):
+    def __init__(self, screen_width, screen_height, plus = 0, r = -0.4):
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.plus = plus
+        self.r = r
+        
         self.generateGrid()
         
+        self.grid[0][3].value = 1
+        self.grid[0][3].cellType = True
+        
+        self.grid[1][3].value = -1
+        self.grid[1][3].cellType = True
+        
+        self.grid[2][3].value = 0.2
+        
+        self.grid[1][1].value = -0.5
         
     def generateGrid(self):
         self.grid = []
@@ -12,7 +23,7 @@ class UI(object):
         for i in range(3):
             self.grid.append([])
             for j in range(4):
-                cell = Cell(i, j,value = -0.04,cellType = True, plus = self.plus, s = s)
+                cell = Cell(i, j,value = self.r, plus = self.plus, s = s)
                 self.grid[i].append(cell)
                                             
     def checkNeighbors(self, current_cell):
