@@ -16,7 +16,17 @@ def draw():
     mdpC.display()
     
 def keyTyped():
-    if key == ' ':
+    # if key == ' ':
+    #     mdpA.update()
+    #     mdpB.update()
+    #     mdpC.update()
+    if key in ['a','A','1']:
         mdpA.update()
+    if key in ['b','B','2']:
         mdpB.update()
+    if key in ['c','C','3']:
         mdpC.update()
+    if key == "r":
+        mdpA.gridInit()
+        mdpB.gridInit()
+        mdpC.gridInit()

@@ -1,5 +1,5 @@
 from Cell import Cell
-
+from UI import UI
 
 class MDP (object):
 
@@ -12,7 +12,7 @@ class MDP (object):
         self.ui_height=ui_height
         self.number = number
         
-        # self.ui = UI(ui_width, ui_height, plus = ui_width * number)
+        self.ui = UI(ui_width, ui_height, plus = ui_width * number)
         
     def policyInit(self):
         self.policy = []
@@ -26,8 +26,9 @@ class MDP (object):
         self.grid[0][3].terminal = True
         self.grid[1][3].u = -1
         self.grid[1][3].terminal = True
-        self.grid[2][3].u = 0.2
-        self.grid[1][1].u = -0.5
+        # self.grid[2][3].u = 0.2
+        self.grid[1][1].u = 0
+        self.grid[1][1].terminal = True
 
     def generateMatriz(self):
         for i in range(3):
@@ -37,11 +38,10 @@ class MDP (object):
                 self.grid[i].append(cell)
 
     def update(self):
-        i = 3
-        while i > 0:
-            for col in range(3):
-                self.maxUtility(i-1, col)
-            i = i - 1
+        
+        for j in range(4):
+            for i in range(3):
+                self.maxUtility(i, j)
 
     def maxUtility(self, i,j):
 
@@ -77,7 +77,4 @@ class MDP (object):
         return total
 
     def display(self):
-        for rows in self.grid:
-            for col in rows:
-                print("{0:.5f}".format(col.u))
-            print("")
+        self.ui.display(self.grid)
