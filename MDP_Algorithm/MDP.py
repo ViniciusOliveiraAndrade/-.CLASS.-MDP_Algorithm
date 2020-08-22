@@ -6,16 +6,24 @@ class MDP (object):
     def __init__(self, r, ui_width, ui_height, number = 1):
         self.r = r
         
-        self.gridInit()
+        self.start()
         
         self.ui_width=ui_width
         self.ui_height=ui_height
         self.number = number
         
         self.ui = UI(ui_width, ui_height, plus = ui_width * number)
-        
+    
+    def start(self):
+        self.gridInit()
+        self.policyInit()  
+                
     def policyInit(self):
         self.policy = []
+        for i in range(3):
+            self.policy.append([])
+            for j in range(4):
+                self.policy[i].append("*")
     
     def gridInit(self):
         self.grid = []
@@ -26,9 +34,9 @@ class MDP (object):
         self.grid[0][3].terminal = True
         self.grid[1][3].u = -1
         self.grid[1][3].terminal = True
-        # self.grid[2][3].u = 0.2
-        self.grid[1][1].u = 0
-        self.grid[1][1].terminal = True
+        self.grid[2][3].u = 0.2
+        self.grid[1][1].u = -0.5
+        # self.grid[1][1].terminal = True
 
     def generateMatriz(self):
         for i in range(3):
@@ -38,10 +46,10 @@ class MDP (object):
                 self.grid[i].append(cell)
 
     def update(self):
-        
         for j in range(4):
-            for i in range(3):
+            for i in reversed(range(3)):
                 self.maxUtility(i, j)
+        print (self.policy)
 
     def maxUtility(self, i,j):
 
@@ -49,6 +57,7 @@ class MDP (object):
         if not cell.terminal:
             maxUtility, action = self.max(i, j)
             cell.u = self.r + maxUtility
+            self.policy[i][j] = action
 
     def max(self, i, j):
         cell = self.grid[i][j]
@@ -77,4 +86,4 @@ class MDP (object):
         return total
 
     def display(self):
-        self.ui.display(self.grid)
+        self.ui.display(self.grid, self.policy)

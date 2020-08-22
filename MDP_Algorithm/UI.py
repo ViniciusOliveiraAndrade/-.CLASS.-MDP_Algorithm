@@ -4,9 +4,7 @@ class UI(object):
         self.screen_height = screen_height
         self.plus = plus
     
-    
-    
-    def display(self, grid):
+    def display(self, grid, policy):
         s = self.screen_width / 4
         for rows in grid:
             for cell in rows:
@@ -25,3 +23,17 @@ class UI(object):
         strokeWeight(3)
         line(self.plus, 0, self.plus, self.screen_height)
         line(self.screen_width + self.plus, 0, self.screen_width + self.plus, self.screen_height)
+        
+        half = self.screen_height / 2
+        for i in range(3):
+            for j in range(4):
+                pass
+                x_ = (j * s) + self.plus
+                y_ = (i * s) + (half + 20)
+                
+                stroke(255)
+                strokeWeight(2)
+                fill(255,255,255,100)
+                rect(x_, y_, s, s)
+                fill(255,255,255)
+                text("{}".format(policy[i][j]), x_+(s / 6), y_ + (s /2))

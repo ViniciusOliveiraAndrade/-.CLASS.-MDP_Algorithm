@@ -2,7 +2,7 @@ from MDP import MDP
 
 def setup():
     global mdpA, mdpB, mdpC
-    size(900, 403)
+    size(900, 503)
     UISIZE = width / 3
     mdpA = MDP(-0.4, UISIZE, height, 0)
     mdpB = MDP(-0.04, UISIZE, height, 1)
