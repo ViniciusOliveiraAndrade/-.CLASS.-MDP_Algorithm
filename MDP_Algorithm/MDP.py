@@ -86,4 +86,4 @@ class MDP (object):
         return total
 
     def display(self):
-        self.ui.display(self.grid, self.policy)
+        self.ui.display(self.grid, self.policy, self.r)

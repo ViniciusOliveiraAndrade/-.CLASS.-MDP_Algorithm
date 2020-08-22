@@ -4,7 +4,7 @@ class UI(object):
         self.screen_height = screen_height
         self.plus = plus
     
-    def display(self, grid, policy):
+    def display(self, grid, policy, r):
         s = self.screen_width / 4
         for rows in grid:
             for cell in rows:
@@ -25,6 +25,10 @@ class UI(object):
         line(self.screen_width + self.plus, 0, self.screen_width + self.plus, self.screen_height)
         
         half = self.screen_height / 2
+        txt = "R= " + str(r) +"  \t POLICY:"
+        fill(255,255,255)
+        text(txt, 20 +  self.plus , half + 10)
+        
         for i in range(3):
             for j in range(4):
                 pass
