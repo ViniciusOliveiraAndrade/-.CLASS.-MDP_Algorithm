@@ -49,7 +49,6 @@ class MDP (object):
         for j in range(4):
             for i in reversed(range(3)):
                 self.maxUtility(i, j)
-        print (self.policy)
 
     def maxUtility(self, i,j):
 
@@ -74,13 +73,11 @@ class MDP (object):
             if aux[index] < aux[i+1]:
                 index = i + 1
             i = i + 1
-        # print(aux, index)
         return aux[index], action[index]
 
     def utility(self, neighbors):
         total = 0
         for neighbor in neighbors:
-            # print(neighbor[0],neighbor[1])
             cell = self.grid[neighbor[0]][neighbor[1]]
             total = (cell.u * neighbor[2]) + total
         return total
