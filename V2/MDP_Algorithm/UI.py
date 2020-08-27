@@ -19,10 +19,6 @@ class UI(object):
                     rect(x+6, y+6, s-12, s-12)
                 fill(255,255,255)
                 text("{0:.4f}".format(cell.u), x+(s / 6), y + (s /2))
-        stroke(0, 102, 255)     
-        strokeWeight(3)
-        line(self.plus, 0, self.plus, self.screen_height)
-        line(self.screen_width + self.plus, 0, self.screen_width + self.plus, self.screen_height)
         
         half = self.screen_height / 2
         txt = "R= " + str(r) +"  \t POLICY:"
@@ -41,3 +37,8 @@ class UI(object):
                 rect(x_, y_, s, s)
                 fill(255,255,255)
                 text("{}".format(policy[i][j]), x_+(s / 6), y_ + (s /2))
+        stroke(0, 102, 255)     
+        strokeWeight(3)
+        line(self.plus, 0, self.plus, self.screen_height)
+        line(self.screen_width + self.plus, 0, self.screen_width + self.plus, self.screen_height)
+        
